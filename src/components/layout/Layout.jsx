@@ -1,49 +1,72 @@
-import { Outlet, NavLink} from "react-router";
+import { Outlet, NavLink, useLocation } from "react-router";
 import { Flex, Layout   } from 'antd';
 import { Menu } from 'antd';
 import styles from './layout.module.css';
 import logo from '../../assets/img/logo/logo.png';
+import { MenuOutlined } from '@ant-design/icons';
 
 const { Header, Footer, Content } = Layout;
 
 export const MainLayout = () => {
-  return (
-    <Flex gap="middle" wrap>
-        <Layout className={styles.layout}>
-            <Header className={styles.header}>
-                <div className={styles.logo}>
-                    <img src={logo} alt="Logo" />
-                </div>
-                <Menu
-                    className={styles.menu}
-                    mode="horizontal"
-                    defaultSelectedKeys={['1']}
-                    items={[
-                      { key: '1', label: (
+    const location = useLocation();
+
+    const getCurrentKey = (path) => {
+        if (path === '/') return '1';
+        if (path === '/catalog') return '2';
+        if (path === '/contacts') return '3';
+        return '1';
+    };
+
+    const currentKey = getCurrentKey(location.pathname);
+
+    return (
+        <Flex gap="middle" wrap>
+            <Layout className={styles.layout}>
+                <Header className={styles.header}>
+                    <div className={styles.logo}>
                         <NavLink to="/">
-                            Home
+                            <img src={logo} alt="Logo" />
                         </NavLink>
-                        ) },
-                      { key: '2', label: (
-                        <NavLink to="/catalog">
-                            Catalog
-                        </NavLink>
-                        ) },
-                      { key: '3', label: (
-                        <NavLink to="/contacts">
-                            Contacts
-                        </NavLink>
-                        ) },
-                    ]}
-                />
-            </Header>
-            <Content className={styles.content}>
-                <Outlet />
-            </Content>
-            <Footer className={styles.footer}>
-                <p>© 2025 e-commerce application. All rights reserved.</p>
-            </Footer>
-        </Layout>
-    </Flex>
-  )
-}
+                    </div>
+                    <Menu
+                        className={styles.menu}
+                        mode="horizontal"
+                        selectedKeys={[currentKey]}
+                        items={[
+                        { key: '1', label: (
+                            <NavLink to="/">
+                                Home
+                            </NavLink>
+                            ) },
+                        { key: '2', label: (
+                            <NavLink to="/catalog">
+                                Catalog
+                            </NavLink>
+                            ) },
+                        { key: '3', label: (
+                            <NavLink to="/contacts">
+                                Contacts
+                            </NavLink>
+                            ) },
+                        ]}
+                    />
+                    <div className={styles.userActions}>
+                        <button className={styles.loginButton}>Login</button>
+                        <button className={styles.signupButton}>Sign Up</button>
+                    </div>
+                    <div className={styles.hamburgerMenu}>
+                        <button className={styles.mobileMenuButton}>
+                            <MenuOutlined />
+                        </button>
+                    </div>
+                </Header>
+                <Content className={styles.content}>
+                    <Outlet />
+                </Content>
+                <Footer className={styles.footer}>
+                    <p>© 2025 e-commerce application. All rights reserved.</p>
+                </Footer>
+            </Layout>
+        </Flex>
+        )
+    }

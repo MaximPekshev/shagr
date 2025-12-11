@@ -36,3 +36,40 @@
 .menu {
     min-width: 300px;
 }
+
+.loginButton, .signupButton {
+    background: none;
+    border: none;
+    margin-right: 16px;
+    cursor: pointer;
+    color: #1890ff;
+}
+
+.hamburgerMenu {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.mobileMenuButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+
+    .hamburgerMenu {
+        display: flex;
+
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .userActions {
+        display: none;
+    }
+}
