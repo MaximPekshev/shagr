@@ -1,0 +1,38 @@
+.layout {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    height: 64px;
+    padding-inline: 48px;
+    line-height: 64px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(5,5,5,0.06);
+}
+
+.content {
+    text-align: center;
+    min-height: 120px;
+    line-height: 120px;
+    padding: 0 48px;
+}
+
+.footer {
+    text-align: center;
+}
+
+.logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 24px 16px 0;
+    float: left;
+}
+
+.menu {
+    min-width: 300px;
+}
