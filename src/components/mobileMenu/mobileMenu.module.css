@@ -1,0 +1,47 @@
+.mobile_menu_top {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mobile_menu_close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.mobile_menu_nav {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.mobile_menu_divider {
+    height: 1px;
+    background-color: #e8e8e8;
+    margin: 7px 0;
+}
+
+.userActions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.userActions span {
+    color: #aeaeae;
+}
+
+.loginButton, .signupButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1890ff;
+    /* font-size: 16px; */
+}
+
+.mobile_menu_drawer .ant-drawer-body {
+    padding: 0 !important;
+}

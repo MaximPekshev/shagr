@@ -4,11 +4,14 @@ import { Menu } from 'antd';
 import styles from './layout.module.css';
 import logo from '../../assets/img/logo/logo.png';
 import { MenuOutlined } from '@ant-design/icons';
+import { MobileMenu } from "../mobileMenu/MobileMenu";
+import { useState } from "react";
 
 const { Header, Footer, Content } = Layout;
 
 export const MainLayout = () => {
     const location = useLocation();
+    const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
     const getCurrentKey = (path) => {
         if (path === '/') return '1';
@@ -18,6 +21,10 @@ export const MainLayout = () => {
     };
 
     const currentKey = getCurrentKey(location.pathname);
+
+    const toggleMobileMenu = () => {
+        setMobileMenuVisible(!mobileMenuVisible);
+    };
 
     return (
         <Flex gap="middle" wrap>
@@ -55,10 +62,11 @@ export const MainLayout = () => {
                         <button className={styles.signupButton}>Sign Up</button>
                     </div>
                     <div className={styles.hamburgerMenu}>
-                        <button className={styles.mobileMenuButton}>
+                        <button onClick={() => toggleMobileMenu()} className={styles.mobileMenuButton}>
                             <MenuOutlined />
                         </button>
                     </div>
+                    <MobileMenu visible={mobileMenuVisible} onClose={toggleMobileMenu} />
                 </Header>
                 <Content className={styles.content}>
                     <Outlet />
