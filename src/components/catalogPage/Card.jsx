@@ -2,9 +2,10 @@ import { Card } from "antd";
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
 const { Meta } = Card;
 import styles from './card.module.css';
+import { NavLink } from "react-router";
 export const CatalogCard = ({ title, description, imageUrl }) => {
     return (
-        <>
+        <NavLink to="/catalog/1" className={styles.cardLink} >
             <Card
                 hoverable
                 style={{ width: 240 }}
@@ -32,10 +33,15 @@ export const CatalogCard = ({ title, description, imageUrl }) => {
                     <p className={styles.description}>{description}</p>
                     <div className={styles.bottom} >
                         <p className={styles.price}><span>Price:</span>$99.99</p>
-                        <button onClick={(e) => { e.preventDefault() }} className={styles.addToCartButton}><ShoppingCartOutlined /></button>
+                        <button 
+                            onClick={(e) => { e.preventDefault() }} 
+                            className={styles.addToCartButton}
+                        >
+                            <ShoppingCartOutlined />
+                        </button>
                     </div>
                 </div>
             </Card>
-        </>
+        </NavLink>
     )
 }

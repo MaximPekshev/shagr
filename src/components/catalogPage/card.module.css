@@ -27,6 +27,7 @@
     background-color: #1890ff;
     color: #fff;
     cursor: pointer;
+    z-index: 200;
 }
 
 .addToCartButton:hover {

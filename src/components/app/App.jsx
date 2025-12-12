@@ -8,6 +8,7 @@ import { MainLayout } from "../layout/Layout";
 import { IndexPage } from "../../pages/indexPage";
 import { CatalogPage } from "../../pages/catalogPage";
 import { ContactsPage } from "../../pages/contactsPage";
+import { ProductPage } from "../../pages/productPage";
 import './reset.css'
 import './main_styles.css'
 
@@ -19,7 +20,10 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<MainLayout />} >
               <Route index element={<IndexPage />} />
-              <Route path="/catalog" element={<CatalogPage />} />
+              <Route path="/catalog" >
+                <Route index element={<CatalogPage />} />
+                <Route path=":productSlug" element={<ProductPage />} />
+              </Route>
               <Route path="/contacts" element={<ContactsPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
