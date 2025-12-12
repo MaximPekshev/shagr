@@ -34,9 +34,7 @@ export const MobileMenu = ({ visible, onClose }) => {
                 </div>
                 <Divider className={styles.mobile_menu_divider} />
                 <div className={ styles.userActions } >
-                    <button className={ styles.loginButton } onClick={onClose}>Login</button>
-                    <span>|</span>
-                    <button className={ styles.signupButton } onClick={onClose}>Sign Up</button>
+                    <NavLink to="/login" className={ styles.loginButton } onClick={onClose}>Login</NavLink>
                 </div>
             </div>
         </Drawer>

@@ -58,8 +58,7 @@ export const MainLayout = () => {
                         ]}
                     />
                     <div className={styles.userActions}>
-                        <button className={styles.loginButton}>Login</button>
-                        <button className={styles.signupButton}>Sign Up</button>
+                        <NavLink to="/login" className={styles.loginButton}>Login</NavLink>
                     </div>
                     <div className={styles.hamburgerMenu}>
                         <button onClick={() => toggleMobileMenu()} className={styles.mobileMenuButton}>
