@@ -2,11 +2,23 @@ import styles from './productWrapper.module.css';
 import noImage from '../../assets/img/product/no_image.png';
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { InputNumber, Image } from 'antd';
+import { useGetProductQuery } from '../../redux/services/api';
+import { useParams } from 'react-router';
 export const ProductWrapper = () => {
+    const { productSlug } = useParams();
+    const { data: product, error, isLoading, isFetching } = useGetProductQuery( productSlug );
 
     const qtyOnChange = value => {
         console.log('changed', value);
     };
+
+    if (isLoading || isFetching) {
+        return <p>Loading...</p>;
+    }
+
+    if (error || !product) {
+        return <p>Product not found.</p>;
+    }
 
     return (
         <div className={styles.productWrapper}>
@@ -24,16 +36,16 @@ export const ProductWrapper = () => {
                 />
             </div>
             <div className={styles.productDetails}>
-                <h1 className={styles.productTitle}>Product Title</h1>
+                <h1 className={styles.productTitle}>{product.name}</h1>
                 <p className={styles.productDescription}>
-                    This is a detailed description of the product. It highlights the features, specifications, and benefits of the product to help customers make informed purchasing decisions.
+                    {product.description || 'No description available.'}
                 </p>
-                <p className={styles.productPrice}><span>Price:</span>$199.99</p>
+                <p className={styles.productPrice}><span>Цена:</span>{product.price}</p>
                 <div className={styles.productActions}>
                     <InputNumber size="large" min={1} max={100000} defaultValue={1} onChange={qtyOnChange} />
                     <button className={styles.addToCartButton}>
                         <ShoppingCartOutlined className={styles.cartIcon} />
-                        <span>Add to cart</span>
+                        <span>В корзину</span>
                     </button>
                     <button className={styles.addToWishlistButton}>
                         <HeartOutlined />

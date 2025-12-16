@@ -3,9 +3,10 @@ import { ShoppingCartOutlined, HeartOutlined, HeartFilled } from '@ant-design/ic
 const { Meta } = Card;
 import styles from './card.module.css';
 import { NavLink } from "react-router";
-export const CatalogCard = ({ title, description, imageUrl }) => {
+
+export const CatalogCard = ({ product, noImage }) => {
     return (
-        <NavLink to="/catalog/1" className={styles.cardLink} >
+        <NavLink to={`/catalog/${product.slug}`} className={styles.cardLink} >
             <Card
                 hoverable
                 style={{ width: 240 }}
@@ -13,8 +14,8 @@ export const CatalogCard = ({ title, description, imageUrl }) => {
                     <>
                         <img
                             draggable={false}
-                            alt={title}
-                            src={imageUrl}
+                            alt={product.name}
+                            src={noImage}
                         />
                         <div className={styles.overlay}>
                             <button 
@@ -29,10 +30,9 @@ export const CatalogCard = ({ title, description, imageUrl }) => {
                 }
             >
                 <div className={styles.cardInfo}>
-                    <h3 className={styles.title}>{title}</h3>
-                    <p className={styles.description}>{description}</p>
+                    <h3 className={styles.title}>{product.name}</h3>
                     <div className={styles.bottom} >
-                        <p className={styles.price}><span>Price:</span>$99.99</p>
+                        <p className={styles.price}><span>Цена:</span>{product.price}</p>
                         <button 
                             onClick={(e) => { e.preventDefault() }} 
                             className={styles.addToCartButton}

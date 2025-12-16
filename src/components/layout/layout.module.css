@@ -71,4 +71,8 @@
     .userActions {
         display: none;
     }
+
+    .content {
+        padding: 0 16px;
+    }   
 }

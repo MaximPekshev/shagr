@@ -1,12 +1,16 @@
 import { Pagination } from 'antd';
 import styles from './pagination.module.css';
-export const CatalogPagination = () => {
+
+export const CatalogPagination = ({ totalItems, itemsPerPage, onPageChange, currentPage }) => {
+    
     return (
         <div className={styles.pagination}>
             <Pagination
+                onChange={onPageChange}
                 showSizeChanger={false}
-                defaultCurrent={1}
-                total={500}
+                current={currentPage}
+                total={totalItems}
+                pageSize={itemsPerPage}
             />
         </div>
         

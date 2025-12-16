@@ -17,7 +17,7 @@ export const MainLayout = () => {
         if (path === '/') return '1';
         if (path === '/catalog') return '2';
         if (path === '/contacts') return '3';
-        return '1';
+        return '';
     };
 
     const currentKey = getCurrentKey(location.pathname);
