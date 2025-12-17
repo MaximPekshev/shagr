@@ -5,6 +5,7 @@ import styles from './card.module.css';
 import { NavLink } from "react-router";
 
 export const CatalogCard = ({ product, noImage }) => {
+    const token = localStorage.getItem('shagr_token');
     return (
         <NavLink to={`/catalog/${product.slug}`} className={styles.cardLink} >
             <Card
@@ -18,13 +19,15 @@ export const CatalogCard = ({ product, noImage }) => {
                             src={noImage}
                         />
                         <div className={styles.overlay}>
-                            <button 
-                                onClick={(e) => { e.preventDefault() }} 
-                                className={styles.favorites}
-                            >
-                                <HeartOutlined />
-                                {/* <HeartFilled /> */}
-                            </button>
+                            { token && (
+                                <button 
+                                    onClick={(e) => { e.preventDefault() }} 
+                                    className={styles.favorites}
+                                >
+                                    <HeartOutlined />
+                                    {/* <HeartFilled /> */}
+                                </button>
+                            )}
                         </div>
                     </>
                 }
@@ -33,12 +36,14 @@ export const CatalogCard = ({ product, noImage }) => {
                     <h3 className={styles.title}>{product.name}</h3>
                     <div className={styles.bottom} >
                         <p className={styles.price}><span>Цена:</span>{product.price}</p>
-                        <button 
-                            onClick={(e) => { e.preventDefault() }} 
-                            className={styles.addToCartButton}
-                        >
-                            <ShoppingCartOutlined />
-                        </button>
+                        { token && (
+                            <button 
+                                onClick={(e) => { e.preventDefault() }} 
+                                className={styles.addToCartButton}
+                            >
+                                <ShoppingCartOutlined />
+                            </button>
+                        )}
                     </div>
                 </div>
             </Card>
