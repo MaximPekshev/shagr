@@ -37,21 +37,7 @@ export const api = createApi({
                 }
                 return url;
             },
-        }),
-        getPin: builder.mutation({
-            query: (data) => ({
-                url: '/pin/',
-                method: 'POST',
-                body: data,
-            }),
-        }),
-        getToken: builder.mutation({
-            query: (data) => ({
-                url: '/token/',
-                method: 'POST',
-                body: data,
-            }),
-        }),
+        })
     }),
 });
 
@@ -60,7 +46,5 @@ export const {
     useGetProductQuery,
     useGetCategoriesQuery,
     useGetCategoryQuery,
-    useGetPinMutation,
-    useGetTokenMutation,
     useGetCompilationsQuery,
 } = api;

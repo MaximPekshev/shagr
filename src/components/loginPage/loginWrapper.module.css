@@ -6,6 +6,7 @@
 }
 
 .loginForm {
+    width: 600px;
     background-color: #fff;
     padding: 34px;
     border-radius: 10px;
@@ -25,8 +26,13 @@
 .loginButton {
     padding: 8px;
     background-color: #1890ff;
-    color: #fff;
+    color: #fff;    
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    min-width: 100px;
+}
+
+.hide {
+    display: none !important;
 }

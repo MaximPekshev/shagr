@@ -39,7 +39,7 @@
 .loginButton, .signupButton {
     background: none;
     border: none;
-    margin-right: 16px;
+    margin-right: 12px;
     cursor: pointer;
     color: #1890ff;
 }
@@ -56,6 +56,47 @@
     cursor: pointer;
     font-size: 24px;
 }
+
+.cart {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    border-radius: 4px;
+    padding: 3px;
+    border: none;
+    color: #1890ff;
+    cursor: pointer;
+    z-index: 200;
+}
+
+.cart svg {
+    width: 20px;
+    height: 20px;
+}
+
+.wishlist {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    border-radius: 4px;
+    padding: 3px;
+    border: none;
+    color: #1890ff;
+    cursor: pointer;
+    z-index: 200;
+}
+
+.wishlist svg {
+    width: 20px;
+    height: 20px;
+}
+
+.userActions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 @media (max-width: 768px) {
 

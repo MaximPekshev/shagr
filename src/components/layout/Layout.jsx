@@ -1,17 +1,23 @@
 import { Outlet, NavLink, useLocation } from "react-router";
-import { Flex, Layout   } from 'antd';
+import { Flex, Layout, Badge } from 'antd';
 import { Menu } from 'antd';
 import styles from './layout.module.css';
 import logo from '../../assets/img/logo/logo.png';
 import { MenuOutlined } from '@ant-design/icons';
 import { MobileMenu } from "../mobileMenu/MobileMenu";
 import { useState } from "react";
+import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons';
+import { useGetCartQuery } from "../../redux/services/cart";
+import { useGetWishlistQuery } from "../../redux/services/wishlist";
 
 const { Header, Footer, Content } = Layout;
 
 export const MainLayout = () => {
+    const token = localStorage.getItem('shagr_token');
     const location = useLocation();
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
+    const { data: cart } = useGetCartQuery({header: { token: token }});
+    const { data: wishlist } = useGetWishlistQuery({header: { token: token }});
 
     const getCurrentKey = (path) => {
         if (path === '/') return '1';
@@ -24,6 +30,11 @@ export const MainLayout = () => {
 
     const toggleMobileMenu = () => {
         setMobileMenuVisible(!mobileMenuVisible);
+    };
+
+    const Logout = () => {
+        localStorage.removeItem('shagr_token');
+        window.location.reload();
     };
 
     return (
@@ -58,7 +69,24 @@ export const MainLayout = () => {
                         ]}
                     />
                     <div className={styles.userActions}>
-                        <NavLink to="/login" className={styles.loginButton}>Login</NavLink>
+                        { token ? (
+                            <>
+                                <NavLink to="/account" className={styles.loginButton}>Account</NavLink>
+                                <button onClick={Logout} className={styles.loginButton}>Logout</button>
+                            </>
+                        ) : (
+                            <NavLink to="/login" className={styles.loginButton}>Login</NavLink>
+                        )}
+                        <Badge size="small" count={ cart ? cart.items.length : 0 }>
+                            <NavLink to="/cart" className={styles.cart}>
+                                <ShoppingCartOutlined className={styles.cartIcon} />
+                            </NavLink>
+                        </Badge>
+                        <Badge size="small" count={ wishlist ? wishlist.items.length : 0 }>
+                            <NavLink to="/wishlist" className={styles.wishlist}>
+                                <HeartOutlined className={styles.wishIcon} />
+                            </NavLink>
+                        </Badge>
                     </div>
                     <div className={styles.hamburgerMenu}>
                         <button onClick={() => toggleMobileMenu()} className={styles.mobileMenuButton}>
