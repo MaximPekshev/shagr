@@ -11,6 +11,8 @@ import { ContactsPage } from "../../pages/contactsPage";
 import { ProductPage } from "../../pages/productPage";
 import { LoginPage } from "../../pages/loginPage";
 import { AccountPage } from "../../pages/accountPage";
+import { CartPage } from "../../pages/cartPage";
+import { WishlistPage } from "../../pages/wishlistPage";
 import './reset.css'
 import './main_styles.css'
 
@@ -24,6 +26,8 @@ export const App = () => {
               <Route index element={<IndexPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/account" element={<AccountPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/catalog" >
                 <Route index element={<CatalogPage />} />
                 <Route path=":productSlug" element={<ProductPage />} />

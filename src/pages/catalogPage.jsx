@@ -6,10 +6,7 @@ export const CatalogPage = () => {
         <>
             <Breadcrumbs items={[{ title: 'Home', to: "/" }, { title: 'Catalog' }]} />
             <div className="content-wrapper">
-                <h1>Welcome to the Catalog Page</h1>
                 <CatalogWrapper />
-
-                
             </div>
         </>
     )
