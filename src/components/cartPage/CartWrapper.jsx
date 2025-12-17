@@ -7,7 +7,7 @@ import { useGetCartQuery, useDeleteCartItemMutation } from '../../redux/services
 export const CartWrapper = () => {
     const token = localStorage.getItem('shagr_token');
     const { data: cart, error, isLoading, isFetching } = useGetCartQuery({ header: { token: token } });
-    const [deleteCartItem, { isLoading: isDeleteCartItemLoading, isFetching: isDeleteCartItemFetching }] = useDeleteCartItemMutation();
+    const [deleteCartItem] = useDeleteCartItemMutation();
     
     const delCartItem = (item) => {
         deleteCartItem({ header: { token: token }, item: { good_slug: item.key, quantity: item.quantity } });
@@ -70,18 +70,26 @@ export const CartWrapper = () => {
     return (
         <div className={styles.cartWrapper}>
             { token ? (
-                <>                
+                <div className={styles.cartContainer}>                
                     <h1>Корзина</h1>
                     { isLoading || isFetching ? (
                         <p>Loading...</p>
                     ) : error ? (
                         <p>Ошибка загрузки корзины.</p>
                     ) : !cart || cart.items.length === 0 ? (
-                        <p>Ваша корзина пуста.</p>
+                        <>
+                            <p>Ваша корзина пуста.</p>
+                            <NavLink 
+                                to="/catalog" 
+                                className={styles.loginButton}
+                            >
+                                Каталог
+                            </NavLink>
+                        </>
                     ) : (
                         <Table columns={columns} dataSource={data} />
                     )}
-                </>
+                </div>
             ) : (
                 <>
                     <h1>Пожалуйста авторизуйтесь, чтобы просмотреть вашу корзину.</h1>

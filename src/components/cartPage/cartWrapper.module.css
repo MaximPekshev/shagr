@@ -16,6 +16,11 @@
     padding: 60px;
 }
 
+.cartContainer h1, .cartContainer p {
+    margin-bottom: 30px;
+}
+
+
 .deleteButton {
     background: none;
     border: none;

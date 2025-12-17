@@ -15,3 +15,15 @@
     height: 60vh;
     padding: 60px;
 }
+
+.wishlistContainer h1, .wishlistContainer p {
+    margin-bottom: 30px;
+}
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #ff4d4f;
+    cursor: pointer;
+    font-size: 16px;
+}
