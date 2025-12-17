@@ -36,3 +36,13 @@
 .hide {
     display: none !important;
 }
+
+@media (max-width: 768px) {
+    .inputGroup {
+        min-width: 100%;
+    }
+    .loginForm {
+        width: 90%;
+        padding: 15px;
+    }
+}

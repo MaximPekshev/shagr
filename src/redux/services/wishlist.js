@@ -22,7 +22,7 @@ export const wishApi = createApi({
         addWishlistItem: builder.mutation({
             query: ({ header, item }) => {
                 let request = {
-                    url: '/wish/add/',
+                    url: '/wish/set/',
                     method: 'POST',
                     body: item,
                 };

@@ -23,9 +23,9 @@ export const CatalogWrapper = () => {
 
     const { 
         data: products, 
-        error, 
-        isLoading, 
-        isFetching 
+        // error, 
+        // isLoading, 
+        // isFetching 
     } = useGetProductsQuery({
         page: Number(page), 
         category: null, 

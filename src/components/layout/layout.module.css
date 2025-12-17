@@ -60,7 +60,6 @@
 .cart {
     display: flex;
     align-items: center;
-    margin-right: 12px;
     border-radius: 4px;
     padding: 3px;
     border: none;
@@ -77,7 +76,6 @@
 .wishlist {
     display: flex;
     align-items: center;
-    margin-right: 12px;
     border-radius: 4px;
     padding: 3px;
     border: none;

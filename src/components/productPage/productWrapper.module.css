@@ -48,6 +48,7 @@
 .addToCartButton {
     display: flex;
     align-items: center;
+    justify-content: center;
     border-radius: 4px;
     padding: 8px 8px;
     border: none;
@@ -55,6 +56,7 @@
     color: #fff;
     cursor: pointer;
     z-index: 200;
+    min-width: 100px;
 }
 
 .addToCartButton:hover {
@@ -74,6 +76,7 @@
     border: 1px solid #1890ff;
     background: none;
     color: #1890ff;
+    min-width: 45px;
 }
 
 .cartIcon {
@@ -87,6 +90,9 @@
     border-radius: 8px;
 }
 
+.spin {
+    color: #fff;
+}
 
 @media (max-width: 768px) {
     .productWrapper {
