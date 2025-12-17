@@ -15,3 +15,11 @@
     height: 60vh;
     padding: 60px;
 }
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #ff4d4f;
+    cursor: pointer;
+    font-size: 16px;
+}
