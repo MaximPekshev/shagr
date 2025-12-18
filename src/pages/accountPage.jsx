@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "../components/breadcrumbs/Breadcrumbs";
 export const AccountPage = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('shagr_token');
     return (
         <>
             <Breadcrumbs 

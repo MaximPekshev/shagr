@@ -30,6 +30,14 @@
     gap: 10px;
 }
 
+.userLinks {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+}
+
 .userActions span {
     color: #aeaeae;
 }
@@ -44,4 +52,36 @@
 
 .mobile_menu_drawer .ant-drawer-body {
     padding: 0 !important;
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 3px;
+    border: none;
+    color: #1890ff;
+    cursor: pointer;
+    z-index: 200;
+}
+
+.cart svg {
+    width: 20px;
+    height: 20px;
+}
+
+.wishlist {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 3px;
+    border: none;
+    color: #1890ff;
+    cursor: pointer;
+    z-index: 200;
+}
+
+.wishlist svg {
+    width: 20px;
+    height: 20px;
 }

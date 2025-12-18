@@ -10,6 +10,7 @@ import { useSearchParams } from "react-router";
 export const CatalogWrapper = () => {
     const [searchParams] = useSearchParams();
     const page = searchParams.get('page') || 1;
+    const searchQuery = searchParams.get('q') || '';
     const qtyOnPage = 24;
     const gutterSettings = { xs: 8, sm: 16, md: 24, lg: 32 };
     const screens = Grid.useBreakpoint();
@@ -30,7 +31,7 @@ export const CatalogWrapper = () => {
         page: Number(page), 
         category: null, 
         compilation: null, 
-        search: '' 
+        search: searchQuery 
     });
 
     // if ( isLoading || isFetching ) {
@@ -46,10 +47,18 @@ export const CatalogWrapper = () => {
     //         </div>
     //     )
     // }
+
+    if (!products || products.goods.length === 0) {
+        return (
+            <div className={styles.catalogWrapper}>
+                <p>Товары не найдены.</p>
+            </div>
+        )
+    };
     
     const onPageChange = (page) => {
         location.href = `/catalog/?page=${page}`;
-    }
+    };
 
     return (
         <div className={styles.catalogWrapper}>

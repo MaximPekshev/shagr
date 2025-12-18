@@ -5,7 +5,7 @@ import { Menu, Layout } from 'antd';
 import logo from '../../assets/img/logo/logo.png';
 import { MenuOutlined, ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons';
 import { MobileMenu } from "../mobileMenu/MobileMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetCartQuery } from "../../redux/services/cart";
 import { useGetWishlistQuery } from "../../redux/services/wishlist";
 
@@ -47,8 +47,14 @@ export const HeaderComponent = () => {
 
     const onInput = (e) => {
         setSearchValue(e.target.value);
-    }
+    };
+
+    useEffect(() => {
+        setSearchValue(searchQuery);
+    }, [searchQuery]);
+
     return (
+        <>
         <Header className={styles.header}>
             <div className={styles.headerTop}>
                 <div className={styles.userActions}>
@@ -109,7 +115,19 @@ export const HeaderComponent = () => {
                     ]}
                 />
             </div>
-            <MobileMenu visible={mobileMenuVisible} onClose={toggleMobileMenu} />
+            
+            <MobileMenu 
+                visible={mobileMenuVisible} 
+                onClose={toggleMobileMenu} 
+                token={token}
+                Logout={Logout}
+                cart={cart}
+                wishlist={wishlist}
+            />
         </Header>
+        <div className={styles.mobileSearchBar}>
+                <Search onInput={onInput} value={searchValue} placeholder="Поиск..." onSearch={onSearch} enterButton />
+            </div>
+        </>
     )
 }

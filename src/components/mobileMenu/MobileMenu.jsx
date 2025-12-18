@@ -1,8 +1,8 @@
-import { Drawer, Divider } from "antd";
+import { Drawer, Divider, Badge } from "antd";
 import { NavLink } from "react-router";
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined, ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons';
 import styles from './mobileMenu.module.css';
-export const MobileMenu = ({ visible, onClose }) => {
+export const MobileMenu = ({ visible, onClose, token, Logout, cart, wishlist }) => {
     return (
         <Drawer
             closeIcon={null}
@@ -34,7 +34,27 @@ export const MobileMenu = ({ visible, onClose }) => {
                 </div>
                 <Divider className={styles.mobile_menu_divider} />
                 <div className={ styles.userActions } >
-                    <NavLink to="/login" className={ styles.loginButton } onClick={onClose}>Login</NavLink>
+                    { token ? (
+                        <>
+                            <NavLink to="/account" className={ styles.loginButton } onClick={onClose}>Account</NavLink>
+                            <button onClick={() => { Logout(); onClose(); }} className={styles.loginButton}>Logout</button>
+                        </>
+                    ) : (
+                        <NavLink to="/login" className={ styles.loginButton } onClick={onClose}>Login</NavLink>
+                    ) }
+                </div>
+                <Divider className={styles.mobile_menu_divider} />
+                <div className={ styles.userLinks } >
+                    <Badge size="small" count={ cart ? cart.items.length : 0 }>
+                        <NavLink onClick={onClose} to="/cart" className={styles.cart}>
+                            <ShoppingCartOutlined className={styles.cartIcon} />
+                        </NavLink>
+                    </Badge>
+                    <Badge size="small" count={ wishlist ? wishlist.items.length : 0 }>
+                        <NavLink onClick={onClose} to="/wishlist" className={styles.wishlist}>
+                            <HeartOutlined className={styles.wishIcon} />
+                        </NavLink>
+                    </Badge>
                 </div>
             </div>
         </Drawer>
