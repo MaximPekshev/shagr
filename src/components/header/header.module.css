@@ -1,11 +1,29 @@
 .header {
     display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    height: auto;
+    padding: 0;
+}
+
+.headerTop {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 32px;
+    padding-inline: 68px;
+    background-color: #f0f2f5;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.headerMiddle {
+    display: flex;
     justify-content: space-between;
     text-align: center;
     height: 64px;
-    padding-inline: 48px;
+    padding-inline: 68px;
     line-height: 64px;
-    background-color: #fff;
     border-bottom: 1px solid rgba(5,5,5,0.06);
 }
 
@@ -19,6 +37,7 @@
 
 .menu {
     min-width: 300px;
+    justify-content: end;
 }
 
 .loginButton, .signupButton {
@@ -80,10 +99,45 @@
     align-items: center;
 }
 
+.searchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0.6;
+}
+
+@media (max-width: 1200px) {
+    .searchBar {
+        flex: 0.8;
+    }
+
+}
+
+@media (max-width: 968px) {
+    .searchBar {
+        flex: 1;
+    }
+
+}
+
 @media (max-width: 768px) {
+    .header {
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .headerTop {
+        background-color: #fff;
+        padding-inline: 24px;
+    }
+
+    .headerMiddle {
+        padding-inline: 24px;
+    }
+
     .hamburgerMenu {
         display: flex;
-
     }
 
     .menu {
@@ -91,6 +145,10 @@
     }
 
     .userActions {
+        display: none;
+    }
+
+    .searchBar {
         display: none;
     }
 }
