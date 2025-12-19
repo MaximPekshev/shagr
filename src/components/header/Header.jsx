@@ -60,11 +60,11 @@ export const HeaderComponent = () => {
                 <div className={styles.userActions}>
                     { token ? (
                         <>
-                            <NavLink to="/account" className={styles.loginButton}>Account</NavLink>
-                            <button onClick={Logout} className={styles.loginButton}>Logout</button>
+                            <NavLink to="/account" className={styles.loginButton}>Аккаунт</NavLink>
+                            <button onClick={Logout} className={styles.loginButton}>Выйти</button>
                         </>
                     ) : (
-                        <NavLink to="/login" className={styles.loginButton}>Login</NavLink>
+                        <NavLink to="/login" className={styles.loginButton}>Войти</NavLink>
                     )}
                     <Badge size="small" count={ cart ? cart.items.length : 0 }>
                         <NavLink to="/cart" className={styles.cart}>
@@ -99,17 +99,17 @@ export const HeaderComponent = () => {
                     items={[
                     { key: '1', label: (
                         <NavLink to="/">
-                            Home
+                            Домой
                         </NavLink>
                         ) },
                     { key: '2', label: (
                         <NavLink to="/catalog">
-                            Catalog
+                            Каталог
                         </NavLink>
                         ) },
                     { key: '3', label: (
                         <NavLink to="/contacts">
-                            Contacts
+                            Контакты
                         </NavLink>
                         ) },
                     ]}

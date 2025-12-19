@@ -27,20 +27,20 @@ export const MobileMenu = ({ visible, onClose, token, Logout, cart, wishlist }) 
                 <Divider className={styles.mobile_menu_divider} />
                 <div className={styles.mobile_menu_wrapper}>
                     <nav className={styles.mobile_menu_nav}>
-                        <NavLink to="/" onClick={onClose}>Home</NavLink>
-                        <NavLink to="/catalog" onClick={onClose}>Catalog</NavLink>
-                        <NavLink to="/contacts" onClick={onClose}>Contacts</NavLink>
+                        <NavLink to="/" onClick={onClose}>Домой</NavLink>
+                        <NavLink to="/catalog" onClick={onClose}>Каталог</NavLink>
+                        <NavLink to="/contacts" onClick={onClose}>Контакты</NavLink>
                     </nav>
                 </div>
                 <Divider className={styles.mobile_menu_divider} />
                 <div className={ styles.userActions } >
                     { token ? (
                         <>
-                            <NavLink to="/account" className={ styles.loginButton } onClick={onClose}>Account</NavLink>
-                            <button onClick={() => { Logout(); onClose(); }} className={styles.loginButton}>Logout</button>
+                            <NavLink to="/account" className={ styles.loginButton } onClick={onClose}>Аккаунт</NavLink>
+                            <button onClick={() => { Logout(); onClose(); }} className={styles.loginButton}>Выйти</button>
                         </>
                     ) : (
-                        <NavLink to="/login" className={ styles.loginButton } onClick={onClose}>Login</NavLink>
+                        <NavLink to="/login" className={ styles.loginButton } onClick={onClose}>Войти</NavLink>
                     ) }
                 </div>
                 <Divider className={styles.mobile_menu_divider} />

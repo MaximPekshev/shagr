@@ -5,8 +5,8 @@ export const LoginPage = () => {
         <>
             <Breadcrumbs 
                 items={[
-                    { title: 'Home', to: "/" }, 
-                    { title: 'Login' }
+                    { title: 'Домой', to: "/" }, 
+                    { title: 'Вход' }
                 ]}
             />
             <LoginWrapper />

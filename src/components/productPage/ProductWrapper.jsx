@@ -64,7 +64,7 @@ export const ProductWrapper = () => {
             <div className={styles.productDetails}>
                 <h1 className={styles.productTitle}>{product.name}</h1>
                 <p className={styles.productDescription}>
-                    {product.description || 'No description available.'}
+                    {product.description || 'Описание отсутствует.'}
                 </p>
                 <p className={styles.productPrice}><span>Цена:</span>{product.price}</p>
                 { token && (

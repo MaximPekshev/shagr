@@ -18,14 +18,14 @@ export const CatalogPage = () => {
         <>  
             { categoryQuery ? (
                 <Breadcrumbs items={[
-                    { title: 'Home', to: "/" }, 
-                    { title: 'Catalog', to: "/catalog" },
+                    { title: 'Домой', to: "/" }, 
+                    { title: 'Каталог', to: "/catalog" },
                     { title: categoryData?.name, to: `/catalog/?category=${categoryQuery}` }
                 ]} />
             ) : (
                 <Breadcrumbs items={[
-                    { title: 'Home', to: "/" }, 
-                    { title: 'Catalog' }]} 
+                    { title: 'Домой', to: "/" }, 
+                    { title: 'Каталог' }]} 
                 />
             )}
             <div className="content-wrapper">

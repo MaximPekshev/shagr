@@ -3,7 +3,7 @@ import { CartWrapper } from "../components/cartPage/CartWrapper";
 export const CartPage = () => {
     return (
         <>
-            <Breadcrumbs items={[{ title: 'Home', to: "/" }, { title: 'Корзина' }]} />
+            <Breadcrumbs items={[{ title: 'Домой', to: "/" }, { title: 'Корзина' }]} />
             <div className="content-wrapper">
                 <CartWrapper />
             </div>

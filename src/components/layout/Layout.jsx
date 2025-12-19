@@ -14,7 +14,7 @@ export const MainLayout = () => {
                     <Outlet />
                 </Content>
                 <Footer className={styles.footer}>
-                    <p>© 2025 e-commerce application. All rights reserved.</p>
+                    <p>© 2025 e-commerce приложение. Все права защищены.</p>
                 </Footer>
             </Layout>
         </Flex>

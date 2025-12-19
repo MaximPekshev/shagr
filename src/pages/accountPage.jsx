@@ -11,12 +11,11 @@ export const AccountPage = () => {
             />
             { token ? (
                 <div className="content-wrapper">
-                    <h1>Welcome to your account!</h1>
-                    {/* Additional account details and components can be added here */}
+                    <h1>Добро пожаловать в ваш личный кабинет!</h1>
                 </div>
             ) : (
                 <div className="content-wrapper">
-                    <h1>Please log in to access your account.</h1>
+                    <h1>Пожалуйста, войдите, чтобы получить доступ к вашему личному кабинету.</h1>
                 </div>
             )}
         </>
