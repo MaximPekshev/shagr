@@ -1,0 +1,16 @@
+.sidebar {
+    padding: 16px 0px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #e8e8e8;
+    height: 100%;
+}
+.sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}

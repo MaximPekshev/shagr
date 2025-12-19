@@ -6,16 +6,20 @@ import { CatalogPagination } from "./Pagination.jsx";
 import { Grid } from 'antd';
 import { useGetProductsQuery } from "../../redux/services/api.js";
 import { useSearchParams } from "react-router";
+import { Sidebar } from "./Sidebar.jsx";
 
 export const CatalogWrapper = () => {
     const [searchParams] = useSearchParams();
     const page = searchParams.get('page') || 1;
     const searchQuery = searchParams.get('q') || '';
+    const categoryQuery = searchParams.get('category') || '';
     const qtyOnPage = 24;
     const gutterSettings = { xs: 8, sm: 16, md: 24, lg: 32 };
     const screens = Grid.useBreakpoint();
-    const responsiveColSpan = screens.xl
+    const responsiveColSpan = screens.xxl
         ? 6   // 4 cards per row
+        : screens.xl
+        ? 8   // 3 cards per row
         : screens.lg
         ? 8   // 3 cards per row
         : screens.md
@@ -25,33 +29,34 @@ export const CatalogWrapper = () => {
     const { 
         data: products, 
         // error, 
-        // isLoading, 
-        // isFetching 
+        isLoading, 
+        isFetching 
     } = useGetProductsQuery({
         page: Number(page), 
-        category: null, 
+        category: categoryQuery, 
         compilation: null, 
         search: searchQuery 
     });
 
-    // if ( isLoading || isFetching ) {
-    //     return (
-    //         <div className={styles.catalogWrapper}>
-    //             <Row className={styles.catalogRow} justify="center" gutter={[gutterSettings, gutterSettings]}>
-    //                 { Array.from({ length: qtyOnPage }).map((_, index) => (
-    //                     <Col key={index} className={`gutter-row ${styles.catalogCol}`} span={responsiveColSpan}>
-    //                         <CatalogCard.Skeleton />
-    //                     </Col>
-    //                 )) }
-    //             </Row>
-    //         </div>
-    //     )
-    // }
+    if ( isLoading || isFetching ) {
+        return (
+            <div className={styles.catalogWrapper}>
+                <Sidebar />
+                <div className={styles.catalogBody}>
+                    <p>Загрузка товаров...</p>
+                </div>
+            </div>
+        )
+    }
+    
 
     if (!products || products.goods.length === 0) {
         return (
             <div className={styles.catalogWrapper}>
-                <p>Товары не найдены.</p>
+                <Sidebar />
+                <div className={styles.catalogBody}>
+                    <p>Товары не найдены.</p>
+                </div>
             </div>
         )
     };
@@ -62,22 +67,25 @@ export const CatalogWrapper = () => {
 
     return (
         <div className={styles.catalogWrapper}>
-            <Row className={styles.catalogRow}  justify="center" gutter={[gutterSettings, gutterSettings]}>
-                 {products && products.goods.map((product) => (
-                    <Col key={product.id} className={`gutter-row ${styles.catalogCol}`} span={responsiveColSpan}>
-                        <CatalogCard
-                            product={product}
-                            noImage={noImage}
-                        />
-                    </Col>
-                )) }
-            </Row>
-            <CatalogPagination
-                totalItems={products ? products.count : 0}
-                itemsPerPage={qtyOnPage}
-                onPageChange={onPageChange}
-                currentPage={Number(page)}
-             />
+            <Sidebar categorySlug={categoryQuery} />
+            <div className={styles.catalogBody}>
+                <Row className={styles.catalogRow}  justify="center" gutter={[gutterSettings, gutterSettings]}>
+                    {products && products.goods.map((product) => (
+                        <Col key={product.id} className={`gutter-row ${styles.catalogCol}`} span={responsiveColSpan}>
+                            <CatalogCard
+                                product={product}
+                                noImage={noImage}
+                            />
+                        </Col>
+                    )) }
+                </Row>
+                <CatalogPagination
+                    totalItems={products ? products.count : 0}
+                    itemsPerPage={qtyOnPage}
+                    onPageChange={onPageChange}
+                    currentPage={Number(page)}
+                />
+            </div>
         </div>
     )
 }

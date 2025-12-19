@@ -5,3 +5,11 @@
     border-radius: 10px;
     background-color: #fff;
 }
+
+
+
+@media (max-width: 1024px) {
+    .content-wrapper {
+        padding: 12px 0;
+    }
+}

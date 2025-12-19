@@ -24,10 +24,10 @@ export const api = createApi({
             query: (slug) => `/catalog/good/${slug}/`,
         }),
         getCategories: builder.query({
-            query: () => '/category/',
+            query: () => '/catalog/category/',
         }),
         getCategory: builder.query({
-            query: (slug) => `/category/${slug}/`,
+            query: (slug) => `/catalog/category/${slug}/`,
         }),
         getCompilations: builder.query({
             query: ({ categorySlug }) => {
