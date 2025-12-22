@@ -1,11 +1,12 @@
 import { LoginWrapper } from "../components/loginPage/LoginWrapper";
 import { Breadcrumbs } from "../components/breadcrumbs/Breadcrumbs";
+import { NavLink } from "react-router";
 export const LoginPage = () => {
     return (
         <>
             <Breadcrumbs 
                 items={[
-                    { title: 'Домой', to: "/" }, 
+                    { title: <NavLink to="/">Домой</NavLink> },  
                     { title: 'Вход' }
                 ]}
             />

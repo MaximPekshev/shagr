@@ -3,6 +3,7 @@ import { CatalogWrapper } from "../components/catalogPage/CatalogWrapper";
 import { useSearchParams } from "react-router";
 import { useGetCategoryQuery } from "../redux/services/api";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router";
 
 export const CatalogPage = () => {
     const [searchParams] = useSearchParams();
@@ -18,13 +19,13 @@ export const CatalogPage = () => {
         <>  
             { categoryQuery ? (
                 <Breadcrumbs items={[
-                    { title: 'Домой', to: "/" }, 
-                    { title: 'Каталог', to: "/catalog" },
+                    { title: <NavLink to="/">Домой</NavLink> }, 
+                    { title: <NavLink to="/catalog">Каталог</NavLink> },
                     { title: categoryData?.name, to: `/catalog/?category=${categoryQuery}` }
                 ]} />
             ) : (
                 <Breadcrumbs items={[
-                    { title: 'Домой', to: "/" }, 
+                    { title: <NavLink to="/">Домой</NavLink> }, 
                     { title: 'Каталог' }]} 
                 />
             )}

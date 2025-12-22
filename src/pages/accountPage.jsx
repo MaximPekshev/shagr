@@ -1,12 +1,13 @@
 import { Breadcrumbs } from "../components/breadcrumbs/Breadcrumbs";
+import { NavLink } from "react-router";
 export const AccountPage = () => {
     const token = localStorage.getItem('shagr_token');
     return (
         <>
             <Breadcrumbs 
                 items={[
-                    { title: 'Home', to: "/" }, 
-                    { title: 'Account' }
+                    { title: <NavLink to="/">Домой</NavLink> }, 
+                    { title: 'Личный кабинет' }
                 ]}
             />
             { token ? (
