@@ -48,16 +48,16 @@ export const ProductWrapper = () => {
 
     return (
         <div className={styles.productWrapper}>
-            <div className={styles.productImage}>
+            <div className={`${styles.productImage} product-card-image`}>
                 <Image
-                    alt="basic image"
-                    src={noImage}
+                    alt={product.name}
+                    src={product.preview_image ? product.preview_image.path : noImage}
                     placeholder={
-                    <Image
-                        preview={false}
-                        alt="placeholder image"
-                        src={noImage}
-                    />
+                        <Image
+                            preview={false}
+                            alt={product.name}
+                            src={product.preview_image ? product.preview_image.path : noImage}
+                        />
                     }
                 />
             </div>

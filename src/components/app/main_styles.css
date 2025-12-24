@@ -6,7 +6,19 @@
     background-color: #fff;
 }
 
+.ant-card-cover {
+    padding: 10px;
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.product-card-image .ant-image {
+    display: flex;
+    min-height: 600px;
+    align-items: center;
+}
 
 @media (max-width: 1024px) {
     .content-wrapper {

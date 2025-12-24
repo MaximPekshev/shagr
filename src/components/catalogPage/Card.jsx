@@ -8,6 +8,7 @@ import { useAddWishlistItemMutation, useGetWishlistQuery, useDeleteWishlistItemM
 
 
 export const CatalogCard = ({ product, noImage }) => {
+    console.log('Rendering CatalogCard for product:', product);
     const token = localStorage.getItem('shagr_token');
     const [addCartItem, { isLoading: isCartLoading, isFetching: isCartFetching }] = useAddCartItemMutation();
     const [addWishlistItem, { isLoading: isWishlistLoading, isFetching: isWishlistFetching }] = useAddWishlistItemMutation();
@@ -40,7 +41,7 @@ export const CatalogCard = ({ product, noImage }) => {
                         <img
                             draggable={false}
                             alt={product.name}
-                            src={noImage}
+                            src={ product.preview_image ? product.preview_image.path : noImage}
                         />
                         <div className={styles.overlay}>
                             { token && (
