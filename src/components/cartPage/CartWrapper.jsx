@@ -79,27 +79,25 @@ export const CartWrapper = () => {
 
     const handleCreateOrder = () => {
         setIsModalOpen(false);
-        setTimeout(() => {
-            createOrder(
-                { 
-                    header: { token: token }, 
-                    items: cart.items.map(item => (
-                        { 
-                            good_slug: item.good.slug, 
-                            quantity: item.quantity,
-                            price: item.good.price,
-                            amount: item.amount
-                        }
-                    ))
-                }
-            ).then(() => {
-                clearCart({ header: { token: token } }).then(() => {
-                    setIsAnswerModalOpen(true);
-                });
-            }).catch((error) => {
-                console.error('Ошибка при создании заказа:', error);
+        createOrder(
+            { 
+                header: { token: token }, 
+                items: cart.items.map(item => (
+                    { 
+                        good_slug: item.good.slug, 
+                        quantity: item.quantity,
+                        price: item.good.price,
+                        amount: item.amount
+                    }
+                ))
+            }
+        ).then(() => {
+            clearCart({ header: { token: token } }).then(() => {
+                setIsAnswerModalOpen(true);
             });
-        }, 1000);
+        }).catch((error) => {
+            console.error('Ошибка при создании заказа:', error);
+        });
     };
 
     return (

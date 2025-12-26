@@ -22,6 +22,30 @@ export const orderApi = createApi({
             },
             invalidatesTags: ['Order']
         }),
+        getActiveOrders: builder.query({
+            query: ({ header }) => {
+                let request = {
+                    url: '/orders/active/',
+                    method: 'GET',
+                };
+                if (header && header.token) {
+                    request.headers = { 'Authorization': `${header.token}` };
+                };
+                return request;
+            },
+        }),
+        getClosedOrders: builder.query({
+            query: ({ header }) => {
+                let request = {
+                    url: '/orders/closed/',
+                    method: 'GET',
+                };
+                if (header && header.token) {
+                    request.headers = { 'Authorization': `${header.token}` };
+                };
+                return request;
+            },
+        }),
         getOrders: builder.query({
             query: ({ header }) => {
                 let request = {
@@ -40,4 +64,6 @@ export const orderApi = createApi({
 export const {
     useCreateOrderMutation,
     useGetOrdersQuery,
+    useGetActiveOrdersQuery,
+    useGetClosedOrdersQuery
 } = orderApi;

@@ -1,5 +1,6 @@
 import { Breadcrumbs } from "../components/breadcrumbs/Breadcrumbs";
 import { NavLink } from "react-router";
+import { OrderListWrapper } from "../components/accountPage/OrderListWrapper";
 export const AccountPage = () => {
     const token = localStorage.getItem('shagr_token');
     return (
@@ -12,7 +13,7 @@ export const AccountPage = () => {
             />
             { token ? (
                 <div className="content-wrapper">
-                    <h1>Добро пожаловать в ваш личный кабинет!</h1>
+                    <OrderListWrapper />
                 </div>
             ) : (
                 <div className="content-wrapper">
