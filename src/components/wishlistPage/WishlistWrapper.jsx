@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router';
 import styles from './wishlistWrapper.module.css';
-import { Space, Table } from 'antd';
+import { Space, Table, Modal } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { useGetWishlistQuery, useDeleteWishlistItemMutation } from '../../redux/services/wishlist';
 
@@ -51,7 +51,7 @@ export const WishlistWrapper = () => {
         {
             key: item.good.slug,
             title: item.good.name,
-            price: item.price,
+            price: item.price.toFixed(2),
         }
     ));
 

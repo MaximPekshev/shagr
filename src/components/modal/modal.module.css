@@ -1,0 +1,12 @@
+.modalContent {
+    padding: 40px 0px;
+    text-align: center;
+}
+.modalTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.modalDescription {
+    font-size: 16px;
+    margin-bottom: 20px;
+}

@@ -28,3 +28,46 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+.cartTotal {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cartTotalLabel {
+    margin-right: 10px;
+}
+
+.cartTotalValue {
+    color: #1890ff;
+}
+
+.checkoutContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.checkoutButton {
+    padding: 8px;
+    background-color: #1890ff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.checkoutButton:hover {
+    background: #1890ff !important;
+    opacity: 0.9;
+    color: #fff !important;
+}
+
+.checkoutButton:disabled {
+    background-color: #d9d9d9;
+    cursor: default;
+}

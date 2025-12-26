@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { API_BASE_URL } from "../../constants/config";
 
 export const api = createApi({
     reducerPath: "api",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://backend.shagr.annasoft.site/api/v1" }),
+    baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
     keepUnusedDataFor: 0,
     endpoints: (builder) => ({
         getProducts: builder.query({

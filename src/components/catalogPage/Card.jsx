@@ -8,7 +8,6 @@ import { useAddWishlistItemMutation, useGetWishlistQuery, useDeleteWishlistItemM
 
 
 export const CatalogCard = ({ product, noImage }) => {
-    console.log('Rendering CatalogCard for product:', product);
     const token = localStorage.getItem('shagr_token');
     const [addCartItem, { isLoading: isCartLoading, isFetching: isCartFetching }] = useAddCartItemMutation();
     const [addWishlistItem, { isLoading: isWishlistLoading, isFetching: isWishlistFetching }] = useAddWishlistItemMutation();
