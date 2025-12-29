@@ -7,6 +7,7 @@ import { Grid } from 'antd';
 import { useGetProductsQuery } from "../../redux/services/api.js";
 import { useSearchParams } from "react-router";
 import { Sidebar } from "./Sidebar.jsx";
+import { MobileCategoriesList } from "./MobileCategoriesList.jsx";
 
 export const CatalogWrapper = () => {
     const [searchParams] = useSearchParams();
@@ -40,24 +41,29 @@ export const CatalogWrapper = () => {
 
     if ( isLoading || isFetching ) {
         return (
-            <div className={styles.catalogWrapper}>
-                <Sidebar />
-                <div className={styles.catalogBody}>
-                    <p>Загрузка товаров...</p>
+            <>
+                <MobileCategoriesList />
+                <div className={styles.catalogWrapper}>
+                    <Sidebar />
+                    <div className={styles.catalogBody}>
+                        <p>Загрузка товаров...</p>
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
     
-
     if (!products || products.goods.length === 0) {
         return (
-            <div className={styles.catalogWrapper}>
-                <Sidebar />
-                <div className={styles.catalogBody}>
-                    <p>Товары не найдены.</p>
+            <>
+                <MobileCategoriesList />
+                <div className={styles.catalogWrapper}>
+                    <Sidebar />
+                    <div className={styles.catalogBody}>
+                        <p>Товары не найдены.</p>
+                    </div>
                 </div>
-            </div>
+            </>
         )
     };
     
@@ -66,26 +72,29 @@ export const CatalogWrapper = () => {
     };
 
     return (
-        <div className={styles.catalogWrapper}>
-            <Sidebar categorySlug={categoryQuery} />
-            <div className={styles.catalogBody}>
-                <Row className={styles.catalogRow}  justify="center" gutter={[gutterSettings, gutterSettings]}>
-                    {products && products.goods.map((product) => (
-                        <Col key={product.id} className={`gutter-row ${styles.catalogCol}`} span={responsiveColSpan}>
-                            <CatalogCard
-                                product={product}
-                                noImage={noImage}
-                            />
-                        </Col>
-                    )) }
-                </Row>
-                <CatalogPagination
-                    totalItems={products ? products.count : 0}
-                    itemsPerPage={qtyOnPage}
-                    onPageChange={onPageChange}
-                    currentPage={Number(page)}
-                />
+        <>
+            <MobileCategoriesList />
+            <div className={styles.catalogWrapper}>
+                <Sidebar categorySlug={categoryQuery} />
+                <div className={styles.catalogBody}>
+                    <Row className={styles.catalogRow}  justify="center" gutter={[gutterSettings, gutterSettings]}>
+                        {products && products.goods.map((product) => (
+                            <Col key={product.id} className={`gutter-row ${styles.catalogCol}`} span={responsiveColSpan}>
+                                <CatalogCard
+                                    product={product}
+                                    noImage={noImage}
+                                />
+                            </Col>
+                        )) }
+                    </Row>
+                    <CatalogPagination
+                        totalItems={products ? products.count : 0}
+                        itemsPerPage={qtyOnPage}
+                        onPageChange={onPageChange}
+                        currentPage={Number(page)}
+                    />
+                </div>
             </div>
-        </div>
+        </>
     )
 }

@@ -1,0 +1,41 @@
+.mobileCategoriesWrapper {
+    display: flex;
+    margin-bottom: 16px;
+    display: none;
+}
+
+.categoryButton {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 8px 8px;
+    border: none;
+    background-color: #1890ff;
+    color: #fff;
+    cursor: pointer;
+    z-index: 200;
+}
+
+.divider {
+    margin: 12px 0;
+}
+
+.drawerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .mobileCategoriesWrapper {
+        display: block;
+    }
+}

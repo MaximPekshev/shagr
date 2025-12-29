@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://backend.shagr.annasoft.site/api/v1";
+export const API_BASE_URL = "https://backend.shagr.ru/api/v1";
