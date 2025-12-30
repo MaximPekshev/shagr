@@ -71,3 +71,8 @@
     background-color: #d9d9d9;
     cursor: default;
 }
+
+.art {
+    margin-right: 10px;
+    font-weight: bold;
+}

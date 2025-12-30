@@ -15,7 +15,7 @@ export const WishlistWrapper = () => {
 
     const columns = [
         {
-            title: 'Товар',
+            title: 'Наименование',
             dataIndex: 'title',
             key: 'title',
             render: (_, record) => (
@@ -25,6 +25,16 @@ export const WishlistWrapper = () => {
                     {record.title}
                 </NavLink>
             ),
+        },
+        {
+            title: 'Артикул',
+            dataIndex: 'art',
+            key: 'art',
+        },
+        {
+            title: 'Ед. изм.',
+            dataIndex: 'unit',
+            key: 'unit',
         },
         {
             title: 'Цена',
@@ -50,6 +60,8 @@ export const WishlistWrapper = () => {
     const data = wishlist?.items.map(item => (
         {
             key: item.good.slug,
+            art: item.good.art,
+            unit: item.good.okei,
             title: item.good.name,
             price: item.price.toFixed(2),
         }

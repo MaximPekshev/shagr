@@ -12,6 +12,7 @@ export const CartWrapper = () => {
     const [ isModalOpen, setIsModalOpen ] = useState(false);
     const [ isAnswerModalOpen, setIsAnswerModalOpen ] = useState(false);
     const { data: cart, error, isLoading, isFetching } = useGetCartQuery({ header: { token: token } });
+    console.log('CART DATA:', cart);
     const [createOrder] = useCreateOrderMutation();
     const [deleteCartItem] = useDeleteCartItemMutation();
     const [clearCart] = useClearCartMutation();
@@ -24,7 +25,7 @@ export const CartWrapper = () => {
 
     const columns = [
         {
-            title: 'Товар',
+            title: 'Наименование',
             dataIndex: 'title',
             key: 'title',
             render: (_, record) => (
@@ -35,6 +36,16 @@ export const CartWrapper = () => {
                     {record.title}
                 </NavLink>
             ),
+        },
+        {
+            title: 'Артикул',
+            dataIndex: 'art',
+            key: 'art',
+        },
+        {
+            title: 'Ед. изм.',
+            dataIndex: 'unit',
+            key: 'unit',
         },
         {
             title: 'Цена',
@@ -71,6 +82,8 @@ export const CartWrapper = () => {
         {
             key: item.good.slug,
             title: item.good.name,
+            art: item.good.art,
+            unit: item.good.okei,
             price: item.price.toFixed(2),
             quantity: item.quantity,
             total: item.amount.toFixed(2),
@@ -160,10 +173,6 @@ export const CartWrapper = () => {
                 onClose={() => setIsModalOpen(false)}
                 handleOk={handleCreateOrder}
             />
-            {/* <ModalComponent 
-                isOpen={isCreatingOrder}
-                title="Создание заказа..."
-            /> */}
             <ModalComponent
                 isOpen={isAnswerModalOpen}
                 handleOk={() => setIsAnswerModalOpen(false)}
