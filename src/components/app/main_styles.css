@@ -20,6 +20,10 @@
     align-items: center;
 }
 
+.orderItemsContainer .ant-table-expanded-row {
+    background-color: #fafafa;
+}
+
 @media (max-width: 1024px) {
     .content-wrapper {
         padding: 12px 0;
