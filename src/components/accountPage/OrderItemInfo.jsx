@@ -47,11 +47,14 @@ export const OrderItemInfo = ({ orderItems }) => {
             title: item.good.name,
             art: item.good.art,
             unit: item.good.okei,
-            price: item.price.toFixed(2),
+            price: item.price_without_vat.toFixed(2),
             quantity: item.quantity,
-            total: item.amount.toFixed(2),
+            total: item.amount_without_vat.toFixed(2),
         }
     ));
+
+    const totalAmount = orderItems?.reduce((sum, item) => sum + item.amount_without_vat, 0).toFixed(2);
+
     return (
         <>
             <Table 
@@ -60,7 +63,7 @@ export const OrderItemInfo = ({ orderItems }) => {
                 pagination={false}
             />
             <div className={styles.totalAmount}>
-                <span>Итого:</span> <span>{orderItems.reduce((sum, item) => sum + item.amount, 0).toFixed(2)}</span>
+                <span>Итого:</span> <span>{totalAmount}</span>
             </div>
         </>
     );

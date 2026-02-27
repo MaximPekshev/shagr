@@ -68,7 +68,7 @@ export const WishlistWrapper = () => {
             art: item.good.art,
             unit: item.good.okei,
             title: item.good.name,
-            price: item.price.toFixed(2),
+            price: item.price_without_vat.toFixed(2),
         }
     ));
 

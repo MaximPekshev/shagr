@@ -64,7 +64,7 @@ export const CatalogCard = ({ product, noImage }) => {
                 <div className={styles.cardInfo}>
                     <h3 className={styles.title}>{product.name}</h3>
                     <div className={styles.bottom} >
-                        <p className={styles.price}><span>Цена:</span>{product.price}</p>
+                        <p className={styles.price}><span>Цена:</span>{product.price_without_vat}</p>
                         { token && (
                             <button 
                                 onClick={handleAddToCart} 

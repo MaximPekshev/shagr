@@ -58,15 +58,6 @@ export const HeaderComponent = () => {
         <Header className={styles.header}>
             <div className={styles.headerTop}>
                 <div className={styles.userActions}>
-                    { token ? (
-                        <>
-                            <NavLink to="/account" className={styles.loginButton}>Мои заказы</NavLink>
-                            <NavLink to="/account" className={styles.loginButton}>Мой профиль</NavLink>
-                            <button onClick={Logout} className={styles.loginButton}>Выйти</button>
-                        </>
-                    ) : (
-                        <NavLink to="/login" className={styles.loginButton}>Войти</NavLink>
-                    )}
                     <Badge size="small" count={ cart ? cart.items.length : 0 }>
                         <NavLink to="/cart" className={styles.cart}>
                             Моя корзина
@@ -79,6 +70,15 @@ export const HeaderComponent = () => {
                             {/* <HeartOutlined className={styles.wishIcon} /> */}
                         </NavLink>
                     </Badge>
+                    { token ? (
+                        <>
+                            <NavLink to="/account" className={styles.loginButton}>Мои заказы</NavLink>
+                            <NavLink to="/account" className={styles.loginButton}>Мой профиль</NavLink>
+                            <button onClick={Logout} className={styles.loginButton}>Выйти</button>
+                        </>
+                    ) : (
+                        <NavLink to="/login" className={styles.loginButton}>Войти</NavLink>
+                    )}
                 </div>
                 <div className={styles.hamburgerMenu}>
                     <button onClick={() => toggleMobileMenu()} className={styles.mobileMenuButton}>

@@ -20,11 +20,11 @@ export const CartWrapper = () => {
         deleteCartItem({ header: { token: token }, item: { good_slug: item.key, quantity: item.quantity } });
     };
 
-    const cartAmount = cart?.items.reduce((total, item) => total + item.amount, 0).toFixed(2);
+    const cartAmount = cart?.items.reduce((total, item) => total + item.amount_without_vat, 0).toFixed(2);
 
     const columns = [
         {   title : '№', 
-            dataIndex: 'index', 
+            dataIndex: 'index',
             key: 'index'
         },
         {
@@ -88,9 +88,9 @@ export const CartWrapper = () => {
             title: item.good.name,
             art: item.good.art,
             unit: item.good.okei,
-            price: item.price.toFixed(2),
+            price: item.price_without_vat.toFixed(2),
             quantity: item.quantity,
-            total: item.amount.toFixed(2),
+            total: item.amount_without_vat.toFixed(2),
         }
     ));
 
@@ -103,8 +103,8 @@ export const CartWrapper = () => {
                     { 
                         good_slug: item.good.slug, 
                         quantity: item.quantity,
-                        price: item.good.price,
-                        amount: item.amount
+                        price: item.good.price_without_vat,
+                        amount: item.amount_without_vat
                     }
                 ))
             }
