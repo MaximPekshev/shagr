@@ -1,10 +1,8 @@
 import { Breadcrumbs } from '../components/breadcrumbs/Breadcrumbs'
-import { NavLink } from 'react-router'
 export const ContactsPage = () => {
     return (
         <>
             <Breadcrumbs items={[
-                { title: <NavLink to="/">Домой</NavLink> }, 
                 { title: 'Контакты' }]} 
             />
             <div className="content-wrapper">

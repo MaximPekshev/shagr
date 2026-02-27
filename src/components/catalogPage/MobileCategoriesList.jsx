@@ -13,7 +13,7 @@ export const MobileCategoriesList = () => {
         key: category.slug,
         label: (
                 <NavLink 
-                    to={`/catalog/?category=${category.slug}`}
+                    to={`/?category=${category.slug}`}
                     onClick={() => setIsDrawerVisible(false)}
                 >
                     {category.name}
@@ -23,7 +23,7 @@ export const MobileCategoriesList = () => {
             key: subcategory.slug,
             label: (
                 <NavLink 
-                    to={`/catalog/?category=${subcategory.slug}`}
+                    to={`/?category=${subcategory.slug}`}
                     onClick={() => setIsDrawerVisible(false)}
                 >
                     {subcategory.name}

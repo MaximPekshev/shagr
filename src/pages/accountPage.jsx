@@ -1,5 +1,4 @@
 import { Breadcrumbs } from "../components/breadcrumbs/Breadcrumbs";
-import { NavLink } from "react-router";
 import { OrderListWrapper } from "../components/accountPage/OrderListWrapper";
 export const AccountPage = () => {
     const token = localStorage.getItem('shagr_token');
@@ -7,7 +6,6 @@ export const AccountPage = () => {
         <>
             <Breadcrumbs 
                 items={[
-                    { title: <NavLink to="/">Домой</NavLink> }, 
                     { title: 'Личный кабинет' }
                 ]}
             />

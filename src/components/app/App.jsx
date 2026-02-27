@@ -5,7 +5,7 @@ import { ConfigProvider } from 'antd'
 import { BrowserRouter, Routes, Route } from "react-router";
 import { NotFoundPage } from "../../pages/notFoundPage"
 import { MainLayout } from "../layout/Layout";
-import { IndexPage } from "../../pages/indexPage";
+// import { IndexPage } from "../../pages/indexPage";
 import { CatalogPage } from "../../pages/catalogPage";
 import { ContactsPage } from "../../pages/contactsPage";
 import { ProductPage } from "../../pages/productPage";
@@ -23,15 +23,15 @@ export const App = () => {
         <Provider store={store}>
           <Routes>
             <Route path="/" element={<MainLayout />} >
-              <Route index element={<IndexPage />} />
+              <Route index element={<CatalogPage />} />
+              <Route path=":productSlug" element={<ProductPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
-              <Route path="/catalog" >
+              {/* <Route path="/catalog" >
                 <Route index element={<CatalogPage />} />
-                <Route path=":productSlug" element={<ProductPage />} />
-              </Route>
+              </Route> */}
               <Route path="/contacts" element={<ContactsPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>

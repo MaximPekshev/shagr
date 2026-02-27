@@ -31,7 +31,7 @@ export const CatalogCard = ({ product, noImage }) => {
     };
 
     return (
-        <NavLink to={`/catalog/${product.slug}`} className={styles.cardLink} >
+        <NavLink to={`/${product.slug}`} className={styles.cardLink} >
             <Card
                 hoverable
                 style={{ width: 240 }}

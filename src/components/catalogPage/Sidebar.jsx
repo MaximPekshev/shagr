@@ -10,7 +10,7 @@ export const Sidebar = ({ categorySlug }) => {
         key: category.slug,
         label: (
                 <NavLink 
-                    to={`/catalog/?category=${category.slug}`}
+                    to={`/?category=${category.slug}`}
                 >
                     {category.name}
                 </NavLink>
@@ -19,7 +19,7 @@ export const Sidebar = ({ categorySlug }) => {
             key: subcategory.slug,
             label: (
                 <NavLink 
-                    to={`/catalog/?category=${subcategory.slug}`}
+                    to={`/?category=${subcategory.slug}`}
                 >
                     {subcategory.name}
                 </NavLink>

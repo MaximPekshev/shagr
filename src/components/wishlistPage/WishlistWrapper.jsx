@@ -14,13 +14,17 @@ export const WishlistWrapper = () => {
     };
 
     const columns = [
+        {   title : '№', 
+            dataIndex: 'index', 
+            key: 'index' 
+        },
         {
             title: 'Наименование',
             dataIndex: 'title',
             key: 'title',
             render: (_, record) => (
                 <NavLink 
-                    to={`/catalog/${record.key}`}
+                    to={`/${record.key}`}
                 >
                     {record.title}
                 </NavLink>
@@ -57,8 +61,9 @@ export const WishlistWrapper = () => {
         },
     ];
 
-    const data = wishlist?.items.map(item => (
+    const data = wishlist?.items.map((item, index) => (
         {
+            index: index + 1,
             key: item.good.slug,
             art: item.good.art,
             unit: item.good.okei,
@@ -80,7 +85,7 @@ export const WishlistWrapper = () => {
                             <>
                                 <p>Ваше избранное пусто.</p>
                                 <NavLink 
-                                    to="/catalog" 
+                                    to="/" 
                                     className={styles.loginButton}
                                 >
                                     Каталог

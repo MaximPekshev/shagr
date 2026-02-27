@@ -12,7 +12,6 @@ export const CartWrapper = () => {
     const [ isModalOpen, setIsModalOpen ] = useState(false);
     const [ isAnswerModalOpen, setIsAnswerModalOpen ] = useState(false);
     const { data: cart, error, isLoading, isFetching } = useGetCartQuery({ header: { token: token } });
-    console.log('CART DATA:', cart);
     const [createOrder] = useCreateOrderMutation();
     const [deleteCartItem] = useDeleteCartItemMutation();
     const [clearCart] = useClearCartMutation();
@@ -24,6 +23,10 @@ export const CartWrapper = () => {
     const cartAmount = cart?.items.reduce((total, item) => total + item.amount, 0).toFixed(2);
 
     const columns = [
+        {   title : '№', 
+            dataIndex: 'index', 
+            key: 'index'
+        },
         {
             title: 'Наименование',
             dataIndex: 'title',
@@ -31,7 +34,7 @@ export const CartWrapper = () => {
             render: (_, record) => (
                 <NavLink 
                     disabled={cart.items.length === 0}
-                    to={`/catalog/${record.key}`}
+                    to={`/${record.key}`}
                 >
                     {record.title}
                 </NavLink>
@@ -78,8 +81,9 @@ export const CartWrapper = () => {
         },
     ];
 
-    const data = cart?.items.map(item => (
-        {
+    const data = cart?.items.map((item, index) => (
+        {   
+            index: index + 1,
             key: item.good.slug,
             title: item.good.name,
             art: item.good.art,
@@ -127,7 +131,7 @@ export const CartWrapper = () => {
                             <>
                                 <p>Ваша корзина пуста.</p>
                                 <NavLink 
-                                    to="/catalog" 
+                                    to="/" 
                                     className={styles.loginButton}
                                 >
                                     Каталог

@@ -19,13 +19,11 @@ export const CatalogPage = () => {
         <>  
             { categoryQuery ? (
                 <Breadcrumbs items={[
-                    { title: <NavLink to="/">Домой</NavLink> }, 
-                    { title: <NavLink to="/catalog">Каталог</NavLink> },
-                    { title: categoryData?.name, to: `/catalog/?category=${categoryQuery}` }
+                    { title: <NavLink to="/">Каталог</NavLink> },
+                    { title: categoryData?.name, to: `/?category=${categoryQuery}` }
                 ]} />
             ) : (
                 <Breadcrumbs items={[
-                    { title: <NavLink to="/">Домой</NavLink> }, 
                     { title: 'Каталог' }]} 
                 />
             )}

@@ -27,8 +27,7 @@ export const MobileMenu = ({ visible, onClose, token, Logout, cart, wishlist }) 
                 <Divider className={styles.mobile_menu_divider} />
                 <div className={styles.mobile_menu_wrapper}>
                     <nav className={styles.mobile_menu_nav}>
-                        <NavLink to="/" onClick={onClose}>Домой</NavLink>
-                        <NavLink to="/catalog" onClick={onClose}>Каталог</NavLink>
+                        <NavLink to="/" onClick={onClose}>Каталог</NavLink>
                         <NavLink to="/contacts" onClick={onClose}>Контакты</NavLink>
                     </nav>
                 </div>
@@ -36,7 +35,8 @@ export const MobileMenu = ({ visible, onClose, token, Logout, cart, wishlist }) 
                 <div className={ styles.userActions } >
                     { token ? (
                         <>
-                            <NavLink to="/account" className={ styles.loginButton } onClick={onClose}>Аккаунт</NavLink>
+                            <NavLink to="/account" className={ styles.loginButton } onClick={onClose}>Мои заказы</NavLink>
+                            <NavLink to="/account" className={ styles.loginButton } onClick={onClose}>Мой профиль</NavLink>
                             <button onClick={() => { Logout(); onClose(); }} className={styles.loginButton}>Выйти</button>
                         </>
                     ) : (
@@ -47,12 +47,14 @@ export const MobileMenu = ({ visible, onClose, token, Logout, cart, wishlist }) 
                 <div className={ styles.userLinks } >
                     <Badge size="small" count={ cart ? cart.items.length : 0 }>
                         <NavLink onClick={onClose} to="/cart" className={styles.cart}>
-                            <ShoppingCartOutlined className={styles.cartIcon} />
+                            Моя корзина
+                           {/* <ShoppingCartOutlined className={styles.cartIcon} /> */}
                         </NavLink>
                     </Badge>
                     <Badge size="small" count={ wishlist ? wishlist.items.length : 0 }>
                         <NavLink onClick={onClose} to="/wishlist" className={styles.wishlist}>
-                            <HeartOutlined className={styles.wishIcon} />
+                            Мое избранное
+                            {/* <HeartOutlined className={styles.wishIcon} /> */}
                         </NavLink>
                     </Badge>
                 </div>

@@ -68,7 +68,7 @@ export const CatalogWrapper = () => {
     };
     
     const onPageChange = (page) => {
-        location.href = `/catalog/?page=${page}`;
+        location.href = `/?page=${page}`;
     };
 
     return (

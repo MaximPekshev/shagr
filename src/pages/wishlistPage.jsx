@@ -5,7 +5,6 @@ export const WishlistPage = () => {
     return (
         <>
             <Breadcrumbs items={[
-                { title: <NavLink to="/">Домой</NavLink> },
                 { title: 'Избранное' }
             ]} />
             <div className="content-wrapper">

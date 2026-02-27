@@ -27,8 +27,8 @@ export const HeaderComponent = () => {
     };
 
     const getCurrentKey = (path) => {
-        if (path === '/') return '1';
-        if (path === '/catalog') return '2';
+        // if (path === '/') return '1';
+        if (path === '/') return '2';
         if (path === '/contacts') return '3';
         return '';
     };
@@ -42,7 +42,7 @@ export const HeaderComponent = () => {
 
     const onSearch = (value) => {
         setSearchValue(value);
-        navigate(`/catalog/?page=1&q=${value}`);
+        navigate(`/?page=1&q=${value}`);
     };
 
     const onInput = (e) => {
@@ -60,7 +60,8 @@ export const HeaderComponent = () => {
                 <div className={styles.userActions}>
                     { token ? (
                         <>
-                            <NavLink to="/account" className={styles.loginButton}>Аккаунт</NavLink>
+                            <NavLink to="/account" className={styles.loginButton}>Мои заказы</NavLink>
+                            <NavLink to="/account" className={styles.loginButton}>Мой профиль</NavLink>
                             <button onClick={Logout} className={styles.loginButton}>Выйти</button>
                         </>
                     ) : (
@@ -68,12 +69,14 @@ export const HeaderComponent = () => {
                     )}
                     <Badge size="small" count={ cart ? cart.items.length : 0 }>
                         <NavLink to="/cart" className={styles.cart}>
-                            <ShoppingCartOutlined className={styles.cartIcon} />
+                            Моя корзина
+                            {/* <ShoppingCartOutlined className={styles.cartIcon} /> */}
                         </NavLink>
                     </Badge>
                     <Badge size="small" count={ wishlist ? wishlist.items.length : 0 }>
                         <NavLink to="/wishlist" className={styles.wishlist}>
-                            <HeartOutlined className={styles.wishIcon} />
+                            Мое избранное
+                            {/* <HeartOutlined className={styles.wishIcon} /> */}
                         </NavLink>
                     </Badge>
                 </div>
@@ -97,13 +100,13 @@ export const HeaderComponent = () => {
                     mode="horizontal"
                     selectedKeys={[currentKey]}
                     items={[
-                    { key: '1', label: (
-                        <NavLink to="/">
-                            Домой
-                        </NavLink>
-                        ) },
+                    // { key: '1', label: (
+                    //    <NavLink to="/">
+                    //        Домой
+                    //    </NavLink>
+                    //    ) },
                     { key: '2', label: (
-                        <NavLink to="/catalog">
+                        <NavLink to="/">
                             Каталог
                         </NavLink>
                         ) },

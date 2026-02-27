@@ -4,6 +4,11 @@ import styles from './orderItemInfo.module.css';
 
 export const OrderItemInfo = ({ orderItems }) => {
     const columns = [
+        {   
+            title : '№', 
+            dataIndex: 'index', 
+            key: 'index' 
+        },
         {
             title: 'Наименование',
             dataIndex: 'title',
@@ -35,9 +40,10 @@ export const OrderItemInfo = ({ orderItems }) => {
             key: 'total',
         },
     ];
-    const data = orderItems?.map(item => (
+    const data = orderItems?.map((item, index) => (
         {
             key: item.good.slug,
+            index: index + 1,
             title: item.good.name,
             art: item.good.art,
             unit: item.good.okei,

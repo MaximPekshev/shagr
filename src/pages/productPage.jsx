@@ -5,9 +5,7 @@ export const ProductPage = () => {
     return (
         <>
             <Breadcrumbs items={[
-                { title: <NavLink to="/">Домой</NavLink> },  
-                { title: <NavLink to="/catalog">Каталог</NavLink> },
-                // { title: 'Product' }
+                { title: <NavLink to="/">Каталог</NavLink> },
             ]} />
             <div className="content-wrapper">
                 <ProductWrapper />
