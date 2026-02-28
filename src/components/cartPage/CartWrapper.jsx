@@ -103,8 +103,9 @@ export const CartWrapper = () => {
                     { 
                         good_slug: item.good.slug, 
                         quantity: item.quantity,
-                        price: item.good.price_without_vat,
-                        amount: item.amount_without_vat
+                        // при создании заказа передаем ЦЕНУ С НДС!!
+                        price: item.good.price,
+                        amount: item.amount
                     }
                 ))
             }

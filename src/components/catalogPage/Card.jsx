@@ -29,7 +29,6 @@ export const CatalogCard = ({ product, noImage }) => {
         }
         addWishlistItem({ header: { token: token }, item: { good_slug: product.slug, quantity: 1 } });
     };
-
     return (
         <NavLink to={`/${product.slug}`} className={styles.cardLink} >
             <Card

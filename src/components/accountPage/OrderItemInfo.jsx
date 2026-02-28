@@ -15,9 +15,9 @@ export const OrderItemInfo = ({ orderItems }) => {
             key: 'title',
         },
         {
-            title: 'Артикул',
-            dataIndex: 'art',
-            key: 'art',
+            title: 'Количество',
+            dataIndex: 'quantity',
+            key: 'quantity',
         },
         {
             title: 'Ед. изм.',
@@ -25,19 +25,29 @@ export const OrderItemInfo = ({ orderItems }) => {
             key: 'unit',
         },
         {
-            title: 'Цена',
-            dataIndex: 'price',
-            key: 'price',
+            title: 'Цена без НДС',
+            dataIndex: 'price_without_vat',
+            key: 'price_without_vat',
         },
         {
-            title: 'Количество',
-            dataIndex: 'quantity',
-            key: 'quantity',
+            title: 'Сумма без НДС',
+            dataIndex: 'total_without_vat',
+            key: 'total_without_vat',
         },
         {
-            title: 'Сумма',
-            dataIndex: 'total',
-            key: 'total',
+            title: 'Ставка НДС',
+            dataIndex: 'vat_rate',
+            key: 'vat_rate',
+        },
+        {
+            title: 'НДС',
+            dataIndex: 'vat',
+            key: 'vat',
+        },
+        {
+            title: 'Сумма с НДС',
+            dataIndex: 'total_with_vat',
+            key: 'total_with_vat',
         },
     ];
     const data = orderItems?.map((item, index) => (
@@ -45,16 +55,19 @@ export const OrderItemInfo = ({ orderItems }) => {
             key: item.good.slug,
             index: index + 1,
             title: item.good.name,
-            art: item.good.art,
-            unit: item.good.okei,
-            price: item.price_without_vat.toFixed(2),
             quantity: item.quantity,
-            total: item.amount_without_vat.toFixed(2),
+            unit: item.good.okei,
+            price_without_vat: item.price_without_vat.toFixed(2),
+            total_without_vat: item.amount_without_vat.toFixed(2),
+            vat_rate: item.vat ? `${item.vat}%` : '',
+            vat: (item.amount - item.amount_without_vat).toFixed(2),
+            total_with_vat: item.amount.toFixed(2),
         }
     ));
 
-    const totalAmount = orderItems?.reduce((sum, item) => sum + item.amount_without_vat, 0).toFixed(2);
-
+    const totalAmountWithoutVAT = orderItems?.reduce((sum, item) => sum + item.amount_without_vat, 0).toFixed(2);
+    const totalAmountWithVAT = orderItems?.reduce((sum, item) => sum + item.amount, 0).toFixed(2);
+    
     return (
         <>
             <Table 
@@ -63,7 +76,10 @@ export const OrderItemInfo = ({ orderItems }) => {
                 pagination={false}
             />
             <div className={styles.totalAmount}>
-                <span>Итого:</span> <span>{totalAmount}</span>
+                <span className={styles.totalLabel}>Итого:</span> <span className={styles.totalValue}>{totalAmountWithoutVAT}</span>
+            </div>
+            <div className={styles.totalAmount}>
+                <span className={styles.totalLabel}>Итого с НДС:</span> <span className={styles.totalValue}>{totalAmountWithVAT}</span>
             </div>
         </>
     );

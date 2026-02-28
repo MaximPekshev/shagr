@@ -2,14 +2,18 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 10px;
 }
-.totalAmount span {
-    font-weight: 600;
-    /* font-size: large; */
-    font-size: 24px;
+
+.totalAmount .totalLabel {
+    font-weight: 500;
+    font-size: 16px;
     font-weight: bold;
-    margin-right: 25px;
+    margin-right: 15px;
+}
+.totalAmount .totalValue {
+    font-size: 18px;
+    font-weight: bold;
+    /* color: #1890ff; */
 }
 
 .orderItemsTable {
