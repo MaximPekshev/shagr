@@ -46,6 +46,16 @@ export const ProductWrapper = () => {
         addWishlistItem({ header: { token: token }, item: { good_slug: product.slug, quantity: quantity } });
     };
 
+    const qtyProps = {
+        mode: 'spinner',
+        min: 1,
+        max: 100000,
+        value: quantity,
+        onChange: qtyOnChange,
+        size: 'large',
+        className: styles.qtyInput,
+    };
+
     return (
         <div className={styles.productWrapper}>
             <div className={`${styles.productImage} product-card-image`}>
@@ -69,7 +79,7 @@ export const ProductWrapper = () => {
                 <p className={styles.productPrice}><span>Цена:</span>{product.price_without_vat}</p>
                 { token && (
                     <div className={styles.productActions}>
-                        <InputNumber size="large" min={1} max={100000} value={quantity} onChange={qtyOnChange} />
+                        <InputNumber {...qtyProps} />
                         { isCartLoading || isCartFetching ? (
                             <> 
                                 <button 

@@ -14,6 +14,10 @@
     align-items: center;
 }
 
+.ant-card-body {
+    padding: 10px !important;
+}
+
 .product-card-image .ant-image {
     display: flex;
     min-height: 600px;

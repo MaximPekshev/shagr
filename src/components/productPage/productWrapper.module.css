@@ -59,6 +59,11 @@
     min-width: 100px;
 }
 
+.qtyInput {
+    z-index: 200;
+    max-width: 150px !important;
+}
+
 .addToCartButton:hover {
     background-color: #40a9ff;
     
@@ -89,7 +94,7 @@
 }
 
 .spin {
-    color: #fff;
+    color: #fff !important;
 }
 
 @media (max-width: 768px) {

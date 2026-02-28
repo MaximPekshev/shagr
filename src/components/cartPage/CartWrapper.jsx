@@ -2,9 +2,14 @@ import { NavLink } from 'react-router';
 import { useState} from 'react';
 import { useCreateOrderMutation } from '../../redux/services/order';
 import styles from './cartWrapper.module.css';
-import { Space, Table, Button } from 'antd';
+import { Space, Table, Button, InputNumber } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import { useGetCartQuery, useDeleteCartItemMutation, useClearCartMutation } from '../../redux/services/cart';
+import { 
+    useGetCartQuery, 
+    useDeleteCartItemMutation, 
+    useClearCartMutation, 
+    useSetCartItemMutation 
+} from '../../redux/services/cart';
 import { ModalComponent } from '../modal/Modal';
 
 export const CartWrapper = () => {
@@ -15,12 +20,27 @@ export const CartWrapper = () => {
     const [createOrder] = useCreateOrderMutation();
     const [deleteCartItem] = useDeleteCartItemMutation();
     const [clearCart] = useClearCartMutation();
-    
+    const [setCartItem, { isLoading: isCartLoading, isFetching: isCartFetching }] = useSetCartItemMutation();
     const delCartItem = (item) => {
         deleteCartItem({ header: { token: token }, item: { good_slug: item.key, quantity: item.quantity } });
     };
 
-    const cartAmount = cart?.items.reduce((total, item) => total + item.amount_without_vat, 0).toFixed(2);
+    const handleQtyChange = (value, record) => {
+        if (value < 1) {
+            return;
+        };
+        if (value === record.quantity) {
+            return;
+        };
+        setTimeout(() => {
+            if (value === record.quantity) {
+                return;
+            };
+            setCartItem({ header: { token: token }, item: { good_slug: record.key, quantity: value } });
+        }, 500);
+    };
+
+    const cartAmount = cart?.items.reduce((total, item) => total + item.amount_without_vat, 0).toFixed(2); 
 
     const columns = [
         {   title : '№', 
@@ -57,8 +77,21 @@ export const CartWrapper = () => {
         },
         {
             title: 'Количество',
-            dataIndex: 'quantity',
+            // dataIndex: 'quantity',
             key: 'quantity',
+            render: (_, record) => (
+                <Space size="middle">
+                    <InputNumber
+                        mode="spinner"
+                        min={1}
+                        max={100000}
+                        value={record.quantity}
+                        disabled={ isCartLoading || isCartFetching }
+                        className={styles.qtyInput}
+                        onChange={(value) => handleQtyChange(value, record)}
+                    />
+                </Space>
+            ),
         },
         {
             title: 'Сумма',
