@@ -1,8 +1,10 @@
-import { Table } from 'antd';
+import { Table, Space, Select } from 'antd';
 import { NavLink } from 'react-router';
 import { OrderItemInfo } from './OrderItemInfo';
+import { OrderStatusComponent } from './OrderStatusComponent';
 
-export const OrderTable = ({ items }) => {
+export const OrderTable = ({ items, availableStatuses }) => {
+    const token = localStorage.getItem('shagr_token');
     const columns = [
         {
             title: 'Заказ',
@@ -20,6 +22,15 @@ export const OrderTable = ({ items }) => {
             title: 'Статус',
             dataIndex: 'status',
             key: 'status',
+            render: (_, record) => {    
+                return (
+                    <OrderStatusComponent 
+                        order={record}
+                        availableStatuses={availableStatuses}
+                        token={token}
+                    />
+                );
+            },
         },
         {
             title: 'Клиент',
@@ -34,7 +45,7 @@ export const OrderTable = ({ items }) => {
         key: order.id,
         order: order,
         client: order.client.name,
-        status: order.status.name,
+        status: order.status,
         items: order.items,
     }));
 

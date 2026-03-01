@@ -32,12 +32,7 @@ export const CartWrapper = () => {
         if (value === record.quantity) {
             return;
         };
-        setTimeout(() => {
-            if (value === record.quantity) {
-                return;
-            };
-            setCartItem({ header: { token: token }, item: { good_slug: record.key, quantity: value } });
-        }, 500);
+        setCartItem({ header: { token: token }, item: { good_slug: record.key, quantity: value } });
     };
 
     const cartAmount = cart?.items.reduce((total, item) => total + item.amount_without_vat, 0).toFixed(2); 
@@ -88,7 +83,8 @@ export const CartWrapper = () => {
                         value={record.quantity}
                         disabled={ isCartLoading || isCartFetching }
                         className={styles.qtyInput}
-                        onChange={(value) => handleQtyChange(value, record)}
+                        onPressEnter={(value) => handleQtyChange(value.target.value, record)}
+                        onStep={(value) => handleQtyChange(value, record)}
                     />
                 </Space>
             ),

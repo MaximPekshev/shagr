@@ -1,5 +1,5 @@
 import styles from './orderListWrapper.module.css';
-import { useGetActiveOrdersQuery, useGetClosedOrdersQuery } from '../../redux/services/order';
+import { useGetActiveOrdersQuery, useGetClosedOrdersQuery, useGetOrderStatusesQuery } from '../../redux/services/order';
 import { Tabs } from 'antd';
 import { OrderTable } from './OrderTable';  
 
@@ -7,7 +7,7 @@ export const OrderListWrapper = () => {
     const token = localStorage.getItem('shagr_token');
     const { data: activeOrders, isLoading: isActiveLoading, isFetching: isActiveFetching } = useGetActiveOrdersQuery({ header: { token: token } });
     const { data: closedOrders, isLoading: isClosedLoading, isFetching: isClosedFetching } = useGetClosedOrdersQuery({ header: { token: token } });
-
+    const { data: orderStatuses } = useGetOrderStatusesQuery({ header: { token: token } });
     const tabItems = [
         {
             key: '1',
@@ -16,6 +16,7 @@ export const OrderListWrapper = () => {
                 <OrderTable 
                     items={activeOrders} 
                     isLoading={isActiveLoading || isActiveFetching} 
+                    availableStatuses={orderStatuses}
                 />
             )
         },
@@ -26,6 +27,7 @@ export const OrderListWrapper = () => {
                 <OrderTable 
                     items={closedOrders} 
                     isLoading={isClosedLoading || isClosedFetching} 
+                    availableStatuses={orderStatuses}
                 />
             )
         }

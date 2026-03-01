@@ -33,6 +33,7 @@ export const orderApi = createApi({
                 };
                 return request;
             },
+            providesTags: ['Orders']
         }),
         getClosedOrders: builder.query({
             query: ({ header }) => {
@@ -45,6 +46,7 @@ export const orderApi = createApi({
                 };
                 return request;
             },
+            providesTags: ['Orders']
         }),
         getOrders: builder.query({
             query: ({ header }) => {
@@ -57,7 +59,39 @@ export const orderApi = createApi({
                 };
                 return request;
             },
-        })
+            providesTags: ['Orders']
+        }),
+        getOrderStatuses: builder.query({
+            query: ({ header }) => {
+                let request = {
+                    url: '/orders/available-statuses/',
+                    method: 'GET',
+                };
+                if (header && header.token) {
+                    request.headers = { 'Authorization': `${header.token}` };
+                };
+                return request;
+            },
+            providesTags: ['OrderStatuses']
+        }),
+        setOrderStatus: builder.mutation({
+            query: ({ header, order_id, status_id }) => {
+                console.log('Setting order status with:', { header, order_id, status_id });
+                let request = {
+                    url: '/orders/set-status/',
+                    method: 'POST',
+                    body: {
+                        order_id: order_id,
+                        status_id: status_id,
+                    },
+                };
+                if (header && header.token) {
+                    request.headers = { 'Authorization': `${header.token}` };
+                }
+                return request;
+            },
+            invalidatesTags: ['Orders', 'OrderStatuses']
+        }),
     }),
 });
 
@@ -65,5 +99,7 @@ export const {
     useCreateOrderMutation,
     useGetOrdersQuery,
     useGetActiveOrdersQuery,
-    useGetClosedOrdersQuery
+    useGetClosedOrdersQuery,
+    useGetOrderStatusesQuery,
+    useSetOrderStatusMutation,
 } = orderApi;
