@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 import styles from './orderItemInfo.module.css';
-
+import dayjs from 'dayjs';
 
 export const OrderItemInfo = ({ orderItems }) => {
     const columns = [
@@ -49,7 +49,28 @@ export const OrderItemInfo = ({ orderItems }) => {
             dataIndex: 'total_with_vat',
             key: 'total_with_vat',
         },
+        {
+            title: 'Требуется к дате',
+            dataIndex: 'required_date',
+            key: 'required_date',
+            render: (_, record) => (
+                <div className={styles.dateCell}>
+                    {record.required_date ? dayjs(record.required_date).format('DD.MM.YYYY') : '—'}
+                </div>
+            ),
+        },
+        {
+            title: 'Возможная дата',
+            dataIndex: 'possible_date',
+            key: 'possible_date',
+            render: (_, record) => (
+                <div className={styles.dateCell}>
+                    {record.possible_date ? dayjs(record.possible_date).format('DD.MM.YYYY') : '—'}
+                </div>
+            ),
+        },
     ];
+
     const data = orderItems?.map((item, index) => (
         {
             key: item.good.slug,
@@ -62,6 +83,8 @@ export const OrderItemInfo = ({ orderItems }) => {
             vat_rate: item.vat ? `${item.vat}%` : '',
             vat: (item.amount - item.amount_without_vat).toFixed(2),
             total_with_vat: item.amount.toFixed(2),
+            required_date: item.required_date,
+            possible_date: item.possible_date,
         }
     ));
 

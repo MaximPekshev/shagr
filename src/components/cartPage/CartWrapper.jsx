@@ -2,7 +2,7 @@ import { NavLink } from 'react-router';
 import { useState} from 'react';
 import { useCreateOrderMutation } from '../../redux/services/order';
 import styles from './cartWrapper.module.css';
-import { Space, Table, Button, InputNumber } from 'antd';
+import { Space, Table, Button, InputNumber, DatePicker } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { 
     useGetCartQuery, 
@@ -11,6 +11,7 @@ import {
     useSetCartItemMutation 
 } from '../../redux/services/cart';
 import { ModalComponent } from '../modal/Modal';
+import dayjs from 'dayjs';
 
 export const CartWrapper = () => {
     const token = localStorage.getItem('shagr_token');
@@ -36,6 +37,24 @@ export const CartWrapper = () => {
     };
 
     const cartAmount = cart?.items.reduce((total, item) => total + item.amount_without_vat, 0).toFixed(2); 
+
+    const handleRequiredDateChange = (value, record) => {
+        setCartItem({ header: { token: token }, item: { 
+            good_slug: record.key, 
+            quantity: record.quantity,
+            required_date: value ? value.format('YYYY-MM-DDTHH:mm:ss') : null,
+            possible_date: record.possible_date,
+        }});
+    };
+
+    const handlePossibleDateChange = (value, record) => {
+        setCartItem({ header: { token: token }, item: { 
+            good_slug: record.key, 
+            quantity: record.quantity,
+            required_date: record.required_date,
+            possible_date: value ? value.format('YYYY-MM-DDTHH:mm:ss') : null,
+        }});
+    };
 
     const columns = [
         {   title : '№', 
@@ -72,7 +91,6 @@ export const CartWrapper = () => {
         },
         {
             title: 'Количество',
-            // dataIndex: 'quantity',
             key: 'quantity',
             render: (_, record) => (
                 <Space size="middle">
@@ -93,6 +111,30 @@ export const CartWrapper = () => {
             title: 'Сумма',
             dataIndex: 'total',
             key: 'total',
+        },
+        {
+            title: 'Требуется к дате',
+            key: 'required_date',
+            render: (_, record) => (
+                <Space size="middle">
+                    <DatePicker
+                        value={record.required_date ? dayjs(record.required_date) : null}
+                        onChange={(value) => handleRequiredDateChange(value, record)} 
+                    />
+                </Space>
+            ),
+        },
+        {
+            title: 'Возможная дата',
+            key: 'possible_date',
+            render: (_, record) => (
+                <Space size="middle">
+                    <DatePicker
+                        value={record.possible_date ? dayjs(record.possible_date) : null}
+                        onChange={(value) => handlePossibleDateChange(value, record)}
+                    />
+                </Space>
+            ),
         },
         {
             title: '',
@@ -120,6 +162,8 @@ export const CartWrapper = () => {
             price: item.price_without_vat.toFixed(2),
             quantity: item.quantity,
             total: item.amount_without_vat.toFixed(2),
+            possible_date: item.possible_date,
+            required_date: item.required_date,
         }
     ));
 
@@ -134,7 +178,9 @@ export const CartWrapper = () => {
                         quantity: item.quantity,
                         // при создании заказа передаем ЦЕНУ С НДС!!
                         price: item.good.price,
-                        amount: item.amount
+                        amount: item.amount,
+                        possible_date: item.possible_date,
+                        required_date: item.required_date,
                     }
                 ))
             }
